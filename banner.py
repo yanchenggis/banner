@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated City Maps Banner</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+        }
+
+        .banner-container {
+            width: 100%;
+            max-width: 1200px;
+            height: 300px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(15,93,244,1) 19%, rgba(33,200,117,1) 89%);
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .map-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.8;
+        }
+
+        .network-map {
+            animation: rotateNetwork 8s infinite linear;
+            transform-origin: center center;
+        }
+
+        .building-map {
+            animation: rotateBuildings 12s infinite linear reverse;
+            transform-origin: center center;
+            opacity: 0.6;
+        }
+
+        @keyframes rotateNetwork {
+            from { transform: rotate(0deg) scale(1.2); }
+            to { transform: rotate(360deg) scale(1.2); }
+        }
+
+        @keyframes rotateBuildings {
+            from { transform: rotate(0deg) scale(1.1); }
+            to { transform: rotate(-360deg) scale(1.1); }
+        }
+
+        .network-svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .building-svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .content-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50px;
+            transform: translateY(-50%);
+            color: white;
+            z-index: 10;
+        }
+
+        .title {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        /* Overlay blend effects */
+        .map-layer:nth-child(1) {
+            mix-blend-mode: screen;
+        }
+
+        .map-layer:nth-child(2) {
+            mix-blend-mode: multiply;
+        }
+    </style>
+</head>
+<body>
+    <div class="banner-container">
+        <!-- Network Map Layer -->
+        <div class="map-layer network-map">
+            <svg class="network-svg" viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg">
+                <!-- Network nodes and connections -->
+                <g stroke="rgba(255,255,255,0.4)" stroke-width="1" fill="none">
+                    <!-- Main network structure -->
+                    <line x1="100" y1="150" x2="200" y2="50" />
+                    <line x1="100" y1="150" x2="200" y2="250" />
+                    <line x1="200" y1="50" x2="350" y2="80" />
+                    <line x1="200" y1="250" x2="350" y2="220" />
+                    <line x1="350" y1="80" x2="500" y2="100" />
+                    <line x1="350" y1="220" x2="500" y2="200" />
+                    <line x1="500" y1="100" x2="650" y2="150" />
+                    <line x1="500" y1="200" x2="650" y2="150" />
+                    
+                    <!-- Cross connections -->
+                    <line x1="200" y1="50" x2="200" y2="250" />
+                    <line x1="350" y1="80" x2="350" y2="220" />
+                    <line x1="500" y1="100" x2="500" y2="200" />
+                    
+                    <!-- Secondary network -->
+                    <line x1="150" y1="100" x2="300" y2="30" />
+                    <line x1="300" y1="30" x2="450" y2="60" />
+                    <line x1="450" y1="60" x2="600" y2="90" />
+                    
+                    <line x1="150" y1="200" x2="300" y2="270" />
+                    <line x1="300" y1="270" x2="450" y2="240" />
+                    <line x1="450" y1="240" x2="600" y2="210" />
+                </g>
+                
+                <!-- Network nodes -->
+                <g fill="rgba(255,255,255,0.6)" stroke="rgba(255,255,255,0.8)" stroke-width="2">
+                    <circle cx="100" cy="150" r="4" />
+                    <circle cx="200" cy="50" r="3" />
+                    <circle cx="200" cy="250" r="3" />
+                    <circle cx="350" cy="80" r="3" />
+                    <circle cx="350" cy="220" r="3" />
+                    <circle cx="500" cy="100" r="3" />
+                    <circle cx="500" cy="200" r="3" />
+                    <circle cx="650" cy="150" r="4" />
+                    
+                    <!-- Secondary nodes -->
+                    <circle cx="150" cy="100" r="2" />
+                    <circle cx="300" cy="30" r="2" />
+                    <circle cx="450" cy="60" r="2" />
+                    <circle cx="600" cy="90" r="2" />
+                    <circle cx="150" cy="200" r="2" />
+                    <circle cx="300" cy="270" r="2" />
+                    <circle cx="450" cy="240" r="2" />
+                    <circle cx="600" cy="210" r="2" />
+                </g>
+            </svg>
+        </div>
+
+        <!-- Building Lots Map Layer -->
+        <div class="map-layer building-map">
+            <svg class="building-svg" viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg">
+                <!-- Building lot outlines -->
+                <g stroke="rgba(255,255,255,0.3)" stroke-width="1.5" fill="none">
+                    <!-- Row 1 -->
+                    <rect x="50" y="20" width="60" height="40" />
+                    <rect x="120" y="20" width="80" height="40" />
+                    <rect x="210" y="20" width="50" height="40" />
+                    <rect x="270" y="20" width="90" height="40" />
+                    <rect x="370" y="20" width="70" height="40" />
+                    <rect x="450" y="20" width="60" height="40" />
+                    <rect x="520" y="20" width="100" height="40" />
+                    <rect x="630" y="20" width="80" height="40" />
+                    
+                    <!-- Row 2 -->
+                    <rect x="50" y="80" width="90" height="50" />
+                    <rect x="150" y="80" width="60" height="50" />
+                    <rect x="220" y="80" width="70" height="50" />
+                    <rect x="300" y="80" width="85" height="50" />
+                    <rect x="395" y="80" width="55" height="50" />
+                    <rect x="460" y="80" width="95" height="50" />
+                    <rect x="565" y="80" width="75" height="50" />
+                    <rect x="650" y="80" width="60" height="50" />
+                    
+                    <!-- Row 3 -->
+                    <rect x="50" y="150" width="75" height="60" />
+                    <rect x="135" y="150" width="85" height="60" />
+                    <rect x="230" y="150" width="60" height="60" />
+                    <rect x="300" y="150" width="80" height="60" />
+                    <rect x="390" y="150" width="70" height="60" />
+                    <rect x="470" y="150" width="90" height="60" />
+                    <rect x="570" y="150" width="65" height="60" />
+                    <rect x="645" y="150" width="85" height="60" />
+                    
+                    <!-- Row 4 -->
+                    <rect x="50" y="230" width="80" height="45" />
+                    <rect x="140" y="230" width="70" height="45" />
+                    <rect x="220" y="230" width="90" height="45" />
+                    <rect x="320" y="230" width="65" height="45" />
+                    <rect x="395" y="230" width="75" height="45" />
+                    <rect x="480" y="230" width="85" height="45" />
+                    <rect x="575" y="230" width="70" height="45" />
+                    <rect x="655" y="230" width="80" height="45" />
+                </g>
+                
+                <!-- Street lines -->
+                <g stroke="rgba(255,255,255,0.2)" stroke-width="1" fill="none">
+                    <!-- Horizontal streets -->
+                    <line x1="0" y1="70" x2="800" y2="70" />
+                    <line x1="0" y1="140" x2="800" y2="140" />
+                    <line x1="0" y1="220" x2="800" y2="220" />
+                    
+                    <!-- Vertical streets -->
+                    <line x1="115" y1="0" x2="115" y2="300" />
+                    <line x1="205" y1="0" x2="205" y2="300" />
+                    <line x1="295" y1="0" x2="295" y2="300" />
+                    <line x1="385" y1="0" x2="385" y2="300" />
+                    <line x1="475" y1="0" x2="475" y2="300" />
+                    <line x1="565" y1="0" x2="565" y2="300" />
+                    <line x1="640" y1="0" x2="640" y2="300" />
+                </g>
+            </svg>
+        </div>
+
+        <!-- Content Overlay -->
+        <div class="content-overlay">
+            <div class="title">Urban Analytics</div>
+            <div class="subtitle">Visualizing City Networks & Development</div>
+        </div>
+    </div>
+
+    <div style="margin-top: 20px; padding: 20px; background: #f8f9fa; border-radius: 8px; color: #333;">
+        <h3>🗺️ How to Replace with Your Maps:</h3>
+        
+        <div style="margin: 15px 0;">
+            <strong>1. Network Map Replacement:</strong><br>
+            Replace the content inside <code>&lt;svg class="network-svg" viewBox="0 0 800 300"&gt;</code><br>
+            <em>Lines 46-85 in the code</em>
+        </div>
+        
+        <div style="margin: 15px 0;">
+            <strong>2. Building Lot Map Replacement:</strong><br>
+            Replace the content inside <code>&lt;svg class="building-svg" viewBox="0 0 800 300"&gt;</code><br>
+            <em>Lines 89-130 in the code</em>
+        </div>
+        
+        <div style="margin: 15px 0;">
+            <strong>📄 Recommended File Types:</strong><br>
+            • <strong>SVG</strong> - Best option! Copy the SVG code directly<br>
+            • <strong>Vector formats</strong> - AI, EPS (convert to SVG)<br>
+            • <strong>High-res PNG/JPG</strong> - Use as background-image in CSS
+        </div>
+        
+        <div style="margin: 15px 0;">
+            <strong>🎨 Map Preparation Tips:</strong><br>
+            • Keep white outlines only (stroke="rgba(255,255,255,0.4)")<br>
+            • Remove fills, keep only strokes<br>
+            • Maintain viewBox="0 0 800 300" proportions<br>
+            • Use stroke-width between 1-2px for clarity
+        </div>
+        
+        <div style="margin: 15px 0; background: #e8f5e8; padding: 10px; border-radius: 4px;">
+            <strong>💡 Pro Tip:</strong> If you have raster images, I can help convert them to SVG paths or show you how to use them as CSS background images that rotate!
+        </div>
+    </div>
+</body>
+</html>
