@@ -31,19 +31,14 @@
             width: 100%;
             height: 100%;
             opacity: 0.8;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
         }
 
         .network-map {
-            background-image: url('https://raw.githubusercontent.com/yanchenggis/banner/main/network-map.png');
             animation: rotateNetwork 8s infinite linear;
             transform-origin: center center;
         }
 
         .building-map {
-            background-image: url('https://raw.githubusercontent.com/yanchenggis/banner/main/network-map.png');
             animation: rotateBuildings 12s infinite linear reverse;
             transform-origin: center center;
             opacity: 0.6;
@@ -57,6 +52,16 @@
         @keyframes rotateBuildings {
             from { transform: rotate(0deg) scale(1.1); }
             to { transform: rotate(-360deg) scale(1.1); }
+        }
+
+        .network-svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .building-svg {
+            width: 100%;
+            height: 100%;
         }
 
         .content-overlay {
@@ -114,10 +119,14 @@
 <body>
     <div class="banner-container">
         <!-- Network Map Layer -->
-        <div class="map-layer network-map"></div>
+        <div class="map-layer network-map">
+            <object class="network-svg" data="https://raw.githubusercontent.com/yanchenggis/banner/main/network-map.svg" type="image/svg+xml"></object>
+        </div>
 
-        <!-- Building Lots Map Layer - Add building-map.tiff when ready -->
-        <div class="map-layer building-map"></div>
+        <!-- Building Lots Map Layer - Add building-map.svg when ready -->
+        <div class="map-layer building-map">
+            <object class="building-svg" data="https://raw.githubusercontent.com/yanchenggis/banner/main/building-map.svg" type="image/svg+xml"></object>
+        </div>
 
         <!-- Content Overlay -->
         <!--
@@ -129,6 +138,3 @@
     </div>
 </body>
 </html>
-
-
-
