@@ -35,16 +35,16 @@
             justify-content: center;
         }
 
-        /* 🥇 FINAL SIZE ADJUSTMENT */
+        /* 🥇 FINAL POSITIONING ADJUSTMENT */
         .map-layer img {
-            /* Set base size larger than container to ensure massive scale */
+            /* Set base size larger than container for massive scale */
             width: 120%; 
             height: 120%;
             object-fit: contain;
             opacity: 0.7;
             background: transparent;
-            /* Repositioning: Shift strongly down and left to center the map visually */
-            transform: translate(-15%, 35%); 
+            /* 💡 NEW POSITION: Shifted 5% right and 10% up */
+            transform: translate(5%, -10%); 
         }
 
         .line-map {
@@ -68,7 +68,6 @@
 
         /* Oscillating animations - Center -> Separate -> Center */
         @keyframes oscillateLine {
-            /* INCREASED SCALE: 1.8 * 120% = 216% of banner base size for dramatic effect */
             0%, 100% { 
                 transform: translateX(0) rotate(0deg) scale(1.8); 
             }
@@ -78,7 +77,6 @@
         }
 
         @keyframes oscillateColor {
-            /* INCREASED SCALE: 1.7 * 120% = 204% of banner base size for dramatic effect */
             0%, 100% { 
                 transform: translateX(0) rotate(0deg) scale(1.7); 
             }
@@ -87,10 +85,9 @@
             }
         }
 
-        /* 🥇 FINAL TEXT PLACEMENT */
+        /* Text Placement (Moved down to avoid overlap) */
         .content-overlay {
             position: absolute;
-            /* Moved text down to 75% to completely avoid map overlap */
             top: 75%;
             left: 50px;
             transform: translateY(-50%);
