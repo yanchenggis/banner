@@ -39,38 +39,46 @@
             width: 80%;
             height: 80%;
             object-fit: contain;
-            opacity: 0.8;
+            opacity: 0.7;
             background: transparent;
-            mix-blend-mode: screen;
         }
 
-        .network-map {
-            animation: rotateNetwork 20s infinite linear;
+        .line-map {
+            animation: oscillateLine 8s ease-in-out infinite;
             transform-origin: center center;
         }
 
-        .network-map img {
-            filter: invert(0) brightness(1);
+        .line-map img {
+            filter: brightness(0) invert(1) opacity(0.8);
         }
 
-        .building-map {
-            animation: rotateBuildings 25s infinite linear reverse;
+        .color-map {
+            animation: oscillateColor 10s ease-in-out infinite;
             transform-origin: center center;
-            opacity: 0.6;
+            opacity: 0.5;
         }
 
-        .building-map img {
-            filter: invert(0) brightness(1);
+        .color-map img {
+            filter: brightness(0) invert(1) opacity(0.6);
         }
 
-        @keyframes rotateNetwork {
-            from { transform: rotate(0deg) scale(0.7); }
-            to { transform: rotate(360deg) scale(0.7); }
+        /* Oscillating animations - back and forth rotation */
+        @keyframes oscillateLine {
+            0%, 100% { 
+                transform: rotate(-45deg) scale(0.7); 
+            }
+            50% { 
+                transform: rotate(45deg) scale(0.7); 
+            }
         }
 
-        @keyframes rotateBuildings {
-            from { transform: rotate(0deg) scale(0.65); }
-            to { transform: rotate(-360deg) scale(0.65); }
+        @keyframes oscillateColor {
+            0%, 100% { 
+                transform: rotate(30deg) scale(0.65); 
+            }
+            50% { 
+                transform: rotate(-30deg) scale(0.65); 
+            }
         }
 
         .content-overlay {
@@ -95,13 +103,13 @@
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
 
-        /* Overlay blend effects */
+        /* Blend modes for layering effect */
         .map-layer:nth-child(1) {
             mix-blend-mode: screen;
         }
 
         .map-layer:nth-child(2) {
-            mix-blend-mode: multiply;
+            mix-blend-mode: screen;
         }
 
         /* Responsive design */
@@ -127,14 +135,14 @@
 </head>
 <body>
     <div class="banner-container">
-        <!-- Network Map Layer -->
-        <div class="map-layer network-map">
-            <img src="https://raw.githubusercontent.com/yanchenggis/banner/main/network-map.svg" alt="Network Map">
+        <!-- Line State Map Layer -->
+        <div class="map-layer line-map">
+            <img src="https://raw.githubusercontent.com/yanchenggis/banner/main/line_state.svg" alt="Line State Map">
         </div>
 
-        <!-- Building Lots Map Layer -->
-        <div class="map-layer building-map">
-            <img src="https://raw.githubusercontent.com/yanchenggis/banner/main/building-map.svg" alt="Building Map">
+        <!-- Color State Map Layer -->
+        <div class="map-layer color-map">
+            <img src="https://raw.githubusercontent.com/yanchenggis/banner/main/color_state.svg" alt="Color State Map">
         </div>
 
         <!-- Content Overlay (optional - uncomment to use) -->
@@ -147,5 +155,3 @@
     </div>
 </body>
 </html>
-
-
