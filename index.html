@@ -36,18 +36,17 @@
         }
 
         .map-layer img {
-            /* Reduced base size slightly to prevent complete cutoff while maintaining large scale */
             width: 110%; 
             height: 110%;
             object-fit: contain;
             opacity: 0.7;
             background: transparent;
-            transform: translate(0%, 25%); 
         }
 
         .line-map {
             animation: oscillateLine 10s ease-in-out infinite;
             transform-origin: center center;
+            mix-blend-mode: screen; 
         }
 
         .line-map img {
@@ -58,30 +57,32 @@
             animation: oscillateColor 12s ease-in-out infinite;
             transform-origin: center center;
             opacity: 0.5;
+            mix-blend-mode: screen; 
         }
 
         .color-map img {
             filter: brightness(0) invert(1) opacity(0.6);
         }
 
-        /* Oscillating animations - Center -> Separate -> Center */
         @keyframes oscillateLine {
-            /* Kept the large scale */
+            /* 0% & 100%: PERFECT OVERLAY: X=0, Shared Scale, Downward Shift (Y=25%) */
             0%, 100% { 
-                transform: translateX(0) rotate(0deg) scale(1.8); 
+                transform: translate(0, 25%) rotate(0deg) scale(1.75); 
             }
+            /* 50%: SEPARATE: Moves LEFT (X=-15%) while maintaining Downward Shift */
             50% { 
-                transform: translateX(-15%) rotate(-5deg) scale(1.8); 
+                transform: translate(-15%, 25%) rotate(-5deg) scale(1.75); 
             }
         }
 
         @keyframes oscillateColor {
-            /* Kept the large scale */
+            /* 0% & 100%: PERFECT OVERLAY: X=0, Shared Scale, Downward Shift (Y=25%) */
             0%, 100% { 
-                transform: translateX(0) rotate(0deg) scale(1.7); 
+                transform: translate(0, 25%) rotate(0deg) scale(1.75); 
             }
+            /* 50%: SEPARATE: Moves RIGHT (X=15%) while maintaining Downward Shift */
             50% { 
-                transform: translateX(15%) rotate(5deg) scale(1.7); 
+                transform: translate(15%, 25%) rotate(5deg) scale(1.75); 
             }
         }
 
@@ -107,14 +108,6 @@
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
 
-        /* Blend modes for layering effect */
-        .map-layer:nth-child(1) {
-            mix-blend-mode: screen;
-        }
-
-        .map-layer:nth-child(2) {
-            mix-blend-mode: screen;
-        }
 
         /* Responsive design */
         @media (max-width: 768px) {
@@ -140,14 +133,17 @@
 </head>
 <body>
     <div class="banner-container">
+        <!-- Line State Map Layer -->
         <div class="map-layer line-map">
             <img src="https://raw.githubusercontent.com/yanchenggis/banner/main/line_state.svg" alt="Line State Map">
         </div>
 
+        <!-- Color State Map Layer -->
         <div class="map-layer color-map">
             <img src="https://raw.githubusercontent.com/yanchenggis/banner/main/color_state.svg" alt="Color State Map">
         </div>
 
+        <!-- Content Overlay -->
         <div class="content-overlay">
             <div class="title">Urban Analytics</div>
             <div class="subtitle">From Understanding Data to Developing Insights</div>
@@ -155,5 +151,3 @@
     </div>
 </body>
 </html>
-
-
