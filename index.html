@@ -18,8 +18,7 @@
             height: 70vh;
             min-height: 600px;
             margin: 0 auto;
-            /* Gradient background */
-            background: linear-gradient(135deg, rgba(15,93,244,1) 19%, rgba(33,200,117,1) 89%); 
+            background: linear-gradient(135deg, rgba(15,93,244,1) 19%, rgba(33,200,117,1) 89%);
             position: relative;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
@@ -31,48 +30,57 @@
             left: 0;
             width: 100%;
             height: 100%;
-            opacity: 0.8;
-            /* Centering the SVG within the map-layer */
-            display: flex; 
-            align-items: center; 
+            display: flex;
+            align-items: center;
             justify-content: center;
         }
 
-        .network-map {
-            /* Animation for the container holding the SVG */
-            animation: rotateNetwork 12s infinite linear;
+        .map-layer img {
+            width: 80%;
+            height: 80%;
+            object-fit: contain;
+            opacity: 0.7;
+            background: transparent;
+        }
+
+        .line-map {
+            animation: oscillateLine 8s ease-in-out infinite;
             transform-origin: center center;
         }
 
-        .network-svg {
-            /* Ensures SVG takes up space in the centered layer */
-            width: 80%; 
-            height: 80%;
-            /* Filters applied directly to the inline SVG */
+        .line-map img {
             filter: brightness(0) invert(1) opacity(0.8);
-            object-fit: contain;
         }
 
-        /* Styles for the animated network paths and street lines */
-        .network-svg path:not(.background-path),
-        .network-svg line {
-            stroke: rgba(255, 255, 255, 0.6);
-            stroke-width: 0.5;
-            fill: none;
-        }
-        
-        /* FIX: Ensures the invisible background path does not create a white box/outline */
-        .background-path {
-            stroke: none !important; 
-            fill: none !important;
+        .color-map {
+            animation: oscillateColor 10s ease-in-out infinite;
+            transform-origin: center center;
+            opacity: 0.5;
         }
 
-        @keyframes rotateNetwork {
-            from { transform: rotate(0deg) scale(1.3); } 
-            to { transform: rotate(360deg) scale(1.3); }
+        .color-map img {
+            filter: brightness(0) invert(1) opacity(0.6);
         }
-        
-        /* --- Content Overlay CSS (From your script) --- */
+
+        /* Oscillating animations - back and forth rotation */
+        @keyframes oscillateLine {
+            0%, 100% { 
+                transform: rotate(-45deg) scale(0.7); 
+            }
+            50% { 
+                transform: rotate(45deg) scale(0.7); 
+            }
+        }
+
+        @keyframes oscillateColor {
+            0%, 100% { 
+                transform: rotate(30deg) scale(0.65); 
+            }
+            50% { 
+                transform: rotate(-30deg) scale(0.65); 
+            }
+        }
+
         .content-overlay {
             position: absolute;
             top: 50%;
@@ -94,50 +102,56 @@
             opacity: 0.9;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
-        
+
+        /* Blend modes for layering effect */
+        .map-layer:nth-child(1) {
+            mix-blend-mode: screen;
+        }
+
+        .map-layer:nth-child(2) {
+            mix-blend-mode: screen;
+        }
+
+        /* Responsive design */
         @media (max-width: 768px) {
-            .banner-container { height: 50vh; min-height: 400px; }
-            .content-overlay { left: 30px; }
-            .title { font-size: 2.5em; }
-            .subtitle { font-size: 1.2em; }
+            .banner-container {
+                height: 50vh;
+                min-height: 400px;
+            }
+            
+            .content-overlay {
+                left: 30px;
+            }
+            
+            .title {
+                font-size: 2.5em;
+            }
+            
+            .subtitle {
+                font-size: 1.2em;
+            }
         }
     </style>
 </head>
 <body>
     <div class="banner-container">
-        <div class="map-layer network-map">
-            
-            <svg class="network-svg" viewBox="0 0 2500 1200" preserveAspectRatio="xMinYMin meet" xmlns="http://www.w3.org/2000/svg">
-                
-                <path class="background-path" d="M0 0 C464.97 0 929.94 0 1409 0 C1409 277.86 1409 555.72 1409 842 C944.03 842 479.06 842 0 842 C0 564.14 0 286.28 0 0 Z " transform="translate(0,0)"/>
-                
-                <path d="M0 0 C-0.33 3.63 -0.66 7.26 -1 11 C-0.98 11 -2.96 11 -5 11 C-2.525 11.495 -2.525 11.495 0 12 C0 13.98 0 15.96 0 18 C-4.05431692 19.15837626 -6.21812119 18.83691257 -10 17 C-10.20970559 21.14093698 -10.20970559 21.14093698 -9 25 C-9.99 25.33 -10.98 25.66 -12 26 C-12 25.34 -12 24.68 -12 24 C-13.65 23.67 -15.3 23.34 -17 23 C-18.75734451 18.02638346 -20.32584613 13.2584002 -21 8 C-17.61671128 5.74447419 -16.87203246 5.88211649 -13 6.1875 C-10.37013922 6.31760124 -10.37013922 6.31760124 -8 6 C-5.90023803 3.69762718 -5.90023803 3.69762718 -5 1 C-3 0 -3 0 0 0 Z " transform="translate(229,466)"/>
-                <path d="M 120 180 C 130 150, 200 100, 350 80 L 400 70 M 500 150 L 550 160 C 600 180, 700 250, 750 280 L 800 300 M 100 250 L 150 220 M 250 120 L 300 140 M 450 60 L 500 30 M 600 10 L 650 40 M 700 80 L 750 110 M 50 50 L 100 20 L 150 50 L 200 20 L 250 50 L 300 20 L 350 50 L 400 20 L 450 50 L 500 20 L 550 50 L 600 20 L 650 50 L 700 20 L 750 50 L 800 20" transform="translate(1162,285) scale(0.65)" />
-                <path d="M 140 180 L 250 120 L 360 80 L 470 70 L 580 80 L 690 120 L 800 180" transform="translate(100, 100) scale(1.5)" />
-                <path d="M 10 200 C 100 100, 300 50, 500 50 C 700 50, 800 100, 850 200" transform="translate(200, 200) scale(1.2)" />
-                <path d="M 100 100 L 150 150 L 200 100 L 250 150 L 300 100 L 350 150 L 400 100 L 450 150 L 500 100 L 550 150 L 600 100 L 650 150 L 700 100 L 750 150 L 800 100" transform="translate(450, 450) scale(0.5)" />
-
-                <g stroke="rgba(255,255,255,0.2)" stroke-width="1" fill="none">
-                    <line x1="0" y1="70" x2="800" y2="70" />
-                    <line x1="0" y1="140" x2="800" y2="140" />
-                    <line x1="0" y1="220" x2="800" y2="220" />
-                    
-                    <line x1="115" y1="0" x2="115" y2="300" />
-                    <line x1="205" y1="0" x2="205" y2="300" />
-                    <line x1="295" y1="0" x2="295" y2="300" />
-                    <line x1="385" y1="0" x2="385" y2="300" />
-                    <line x1="475" y1="0" x2="475" y2="300" />
-                    <line x1="565" y1="0" x2="565" y2="300" />
-                    <line x1="655" y1="0" x2="655" y2="300" />
-                    <line x1="745" y1="0" x2="745" y2="300" />
-                </g>
-            </svg>
+        <!-- Line State Map Layer -->
+        <div class="map-layer line-map">
+            <img src="https://raw.githubusercontent.com/yanchenggis/banner/main/line_state.svg" alt="Line State Map">
         </div>
 
+        <!-- Color State Map Layer -->
+        <div class="map-layer color-map">
+            <img src="https://raw.githubusercontent.com/yanchenggis/banner/main/color_state.svg" alt="Color State Map">
+        </div>
+
+        <!-- Content Overlay (optional - uncomment to use) -->
+        <!--
         <div class="content-overlay">
             <div class="title">Urban Analytics</div>
             <div class="subtitle">Visualizing City Networks & Development</div>
         </div>
+        -->
     </div>
 </body>
 </html>
