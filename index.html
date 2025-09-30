@@ -35,19 +35,18 @@
             justify-content: center;
         }
 
-        /* 💡 UPDATED: Increased base size for a larger view */
         .map-layer img {
-            width: 70%; 
-            height: 70%;
+            /* 1. 💡 INCREASED BASE SIZE: Larger base for maximum screen fill */
+            width: 85%; 
+            height: 85%;
             object-fit: contain;
             opacity: 0.7;
             background: transparent;
-            /* 💡 NEW: Base translation to shift the visual center down and slightly left */
-            transform: translate(-5%, 10%); 
+            /* 2. 💡 LOWERED SVG: Shifts the entire map down by 25% of the banner height */
+            transform: translate(-5%, 25%); 
         }
 
         .line-map {
-            /* Slower animation speed */
             animation: oscillateLine 10s ease-in-out infinite;
             transform-origin: center center;
         }
@@ -57,7 +56,6 @@
         }
 
         .color-map {
-            /* Slower animation speed */
             animation: oscillateColor 12s ease-in-out infinite;
             transform-origin: center center;
             opacity: 0.5;
@@ -69,29 +67,29 @@
 
         /* Oscillating animations - Center -> Separate -> Center */
         @keyframes oscillateLine {
-            /* 💡 UPDATED: Lowered max scale to prevent clipping while maintaining size */
+            /* 3. 💡 ADJUSTED SCALE: Ensures the map is very large (85% * 1.15 approx 98% of container) */
             0%, 100% { 
-                transform: translateX(0) rotate(0deg) scale(1.4); 
+                transform: translateX(0) rotate(0deg) scale(1.15); 
             }
             50% { 
-                transform: translateX(-15%) rotate(-5deg) scale(1.4); 
+                transform: translateX(-15%) rotate(-5deg) scale(1.15); 
             }
         }
 
         @keyframes oscillateColor {
-            /* 💡 UPDATED: Lowered max scale to prevent clipping while maintaining size */
+            /* 3. 💡 ADJUSTED SCALE: Ensures the map is very large (85% * 1.1 approx 93% of container) */
             0%, 100% { 
-                transform: translateX(0) rotate(0deg) scale(1.35); 
+                transform: translateX(0) rotate(0deg) scale(1.1); 
             }
             50% { 
-                transform: translateX(15%) rotate(5deg) scale(1.35); 
+                transform: translateX(15%) rotate(5deg) scale(1.1); 
             }
         }
 
-        /* No changes to the content overlay (it is already positioned correctly) */
         .content-overlay {
             position: absolute;
-            top: 50%;
+            /* 4. 💡 LOWERED TEXT: Moves the text down to 70% of the banner height */
+            top: 70%;
             left: 50px;
             transform: translateY(-50%);
             color: white;
@@ -129,6 +127,7 @@
             
             .content-overlay {
                 left: 30px;
+                top: 75%; /* Lower text even more on small screens */
             }
             
             .title {
@@ -153,7 +152,7 @@
 
         <div class="content-overlay">
             <div class="title">Urban Analytics</div>
-            <div class="subtitle">Visualizing City Networks & Development</div>
+            <div class="subtitle">From Understanding Data to Developing Insights</div>
         </div>
     </div>
 </body>
