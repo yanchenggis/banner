@@ -6,9 +6,6 @@
   <g stroke-linecap="square" font-size="33.3333" stroke-linejoin="bevel" font-family="MS Shell Dlg 2" stroke-opacity="1" transform="matrix(1,0,0,1,0,0)" font-weight="400" stroke="#000000" fill="none" font-style="normal" stroke-width="1"/>
   <g stroke-linecap="square" font-size="33.3333" stroke-linejoin="bevel" font-family="MS Shell Dlg 2" stroke-opacity="1" transform="matrix(11.8081,0,0,11.8081,0,0)" font-weight="400" stroke="#000000" fill="none" font-style="normal" stroke-width="1"/>
   <g stroke-linecap="square" font-size="33.3333" stroke-linejoin="bevel" font-family="MS Shell Dlg 2" stroke-opacity="1" transform="matrix(0.999751,0,0,0.999751,0,0)" font-weight="400" stroke="#000000" fill="none" font-style="normal" stroke-width="1"/>
-  <g font-size="33.3333" font-family="MS Shell Dlg 2" transform="matrix(0.999751,0,0,0.999751,0,0)" font-weight="400" stroke="none" fill="#ffffff" font-style="normal" fill-opacity="1">
-   <path fill-rule="evenodd" vector-effect="none" d="M-2,-2 L3510,-2 L3510,2483 L-2,2483 L-2,-2"/>
-  </g>
   <g stroke-linecap="square" font-size="33.3333" stroke-linejoin="bevel" font-family="MS Shell Dlg 2" stroke-opacity="1" transform="matrix(0.999751,0,0,0.999751,0,0)" font-weight="400" stroke="#000000" fill="none" font-style="normal" stroke-width="1"/>
   <g stroke-linecap="square" font-size="33.3333" stroke-linejoin="bevel" font-family="MS Shell Dlg 2" stroke-opacity="1" transform="matrix(11.8081,0,0,11.8081,0,0)" font-weight="400" stroke="#000000" fill="none" font-style="normal" stroke-width="1"/>
   <g stroke-linecap="square" font-size="33.3333" stroke-linejoin="bevel" font-family="MS Shell Dlg 2" stroke-opacity="1" transform="matrix(11.8081,0,0,11.8081,0,0)" font-weight="400" stroke="#000000" fill="none" font-style="normal" stroke-width="1"/>
@@ -521,3 +518,4 @@
   <g stroke-linecap="square" font-size="33.3333" stroke-linejoin="bevel" font-family="MS Shell Dlg 2" stroke-opacity="1" transform="matrix(1,0,0,1,0,0)" font-weight="400" stroke="#000000" fill="none" font-style="normal" stroke-width="1"/>
  </g>
 </svg>
+
