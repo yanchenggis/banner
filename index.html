@@ -20,7 +20,7 @@
             margin: 0 auto;
             background: linear-gradient(135deg, rgba(15,93,244,1) 19%, rgba(33,200,117,1) 89%);
             position: relative;
-            overflow: hidden; /* Keeps the map contained within the banner area */
+            overflow: hidden; 
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
@@ -35,16 +35,16 @@
             justify-content: center;
         }
 
-        /* 🥇 FINAL POSITIONING ADJUSTMENT */
+        /* 🥇 FINAL POSITIONING & SIZING */
         .map-layer img {
-            /* Set base size larger than container for massive scale */
-            width: 120%; 
-            height: 120%;
+            /* Reduced base size slightly to prevent complete cutoff while maintaining large scale */
+            width: 110%; 
+            height: 110%;
             object-fit: contain;
             opacity: 0.7;
             background: transparent;
-            /* 💡 NEW POSITION: Shifted 5% right and 10% up */
-            transform: translate(5%, -10%); 
+            /* 💡 NEW POSITION: Shifted 5% left and 5% up (from the center) to be visible */
+            transform: translate(-5%, -5%); 
         }
 
         .line-map {
@@ -68,6 +68,7 @@
 
         /* Oscillating animations - Center -> Separate -> Center */
         @keyframes oscillateLine {
+            /* Kept the large scale */
             0%, 100% { 
                 transform: translateX(0) rotate(0deg) scale(1.8); 
             }
@@ -77,6 +78,7 @@
         }
 
         @keyframes oscillateColor {
+            /* Kept the large scale */
             0%, 100% { 
                 transform: translateX(0) rotate(0deg) scale(1.7); 
             }
@@ -126,7 +128,7 @@
             
             .content-overlay {
                 left: 30px;
-                top: 80%; /* Lower text even more on small screens */
+                top: 80%; 
             }
             
             .title {
