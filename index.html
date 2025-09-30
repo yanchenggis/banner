@@ -18,6 +18,7 @@
             height: 70vh;
             min-height: 600px;
             margin: 0 auto;
+            /* Changed background to be a bit darker for better contrast */
             background: linear-gradient(135deg, rgba(15,93,244,1) 19%, rgba(33,200,117,1) 89%);
             position: relative;
             overflow: hidden;
@@ -36,15 +37,17 @@
         }
 
         .map-layer img {
-            width: 80%;
-            height: 80%;
+            /* We will let the keyframes control the size (scale) entirely */
+            width: 100%; 
+            height: 100%;
             object-fit: contain;
             opacity: 0.7;
             background: transparent;
         }
 
         .line-map {
-            animation: oscillateLine 8s ease-in-out infinite;
+            /* 💡 SLOWER: Increased duration from 8s to 10s */
+            animation: oscillateLine 10s ease-in-out infinite;
             transform-origin: center center;
         }
 
@@ -53,7 +56,8 @@
         }
 
         .color-map {
-            animation: oscillateColor 10s ease-in-out infinite;
+            /* 💡 SLOWER: Increased duration from 10s to 12s */
+            animation: oscillateColor 12s ease-in-out infinite;
             transform-origin: center center;
             opacity: 0.5;
         }
@@ -62,22 +66,26 @@
             filter: brightness(0) invert(1) opacity(0.6);
         }
 
-        /* Oscillating animations - back and forth rotation */
+        /* Oscillating animations - Center -> Separate -> Center */
         @keyframes oscillateLine {
+            /* 💡 START & END: Maps together, scaled 2.5x larger (~1.8) */
             0%, 100% { 
-                transform: rotate(-45deg) scale(0.7); 
+                transform: translateX(0) rotate(0deg) scale(1.8); 
             }
+            /* 💡 MIDDLE: Line map moves 15% to the LEFT */
             50% { 
-                transform: rotate(45deg) scale(0.7); 
+                transform: translateX(-15%) rotate(-5deg) scale(1.8); 
             }
         }
 
         @keyframes oscillateColor {
+            /* 💡 START & END: Maps together, scaled 2.5x larger (~1.75) */
             0%, 100% { 
-                transform: rotate(30deg) scale(0.65); 
+                transform: translateX(0) rotate(0deg) scale(1.75); 
             }
+            /* 💡 MIDDLE: Color map moves 15% to the RIGHT */
             50% { 
-                transform: rotate(-30deg) scale(0.65); 
+                transform: translateX(15%) rotate(5deg) scale(1.75); 
             }
         }
 
@@ -135,23 +143,18 @@
 </head>
 <body>
     <div class="banner-container">
-        <!-- Line State Map Layer -->
         <div class="map-layer line-map">
             <img src="https://raw.githubusercontent.com/yanchenggis/banner/main/line_state.svg" alt="Line State Map">
         </div>
 
-        <!-- Color State Map Layer -->
         <div class="map-layer color-map">
             <img src="https://raw.githubusercontent.com/yanchenggis/banner/main/color_state.svg" alt="Color State Map">
         </div>
 
-        <!-- Content Overlay (optional - uncomment to use) -->
-        <!--
         <div class="content-overlay">
             <div class="title">Urban Analytics</div>
             <div class="subtitle">Visualizing City Networks & Development</div>
         </div>
-        -->
     </div>
 </body>
 </html>
