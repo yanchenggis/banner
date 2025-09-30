@@ -35,16 +35,19 @@
             justify-content: center;
         }
 
-        /* 💡 FIX: Set a smaller base size for the image so it has room to scale up without clipping. */
+        /* 💡 UPDATED: Increased base size for a larger view */
         .map-layer img {
-            width: 45%; /* Adjusted base width */
-            height: 45%; /* Adjusted base height */
+            width: 70%; 
+            height: 70%;
             object-fit: contain;
             opacity: 0.7;
             background: transparent;
+            /* 💡 NEW: Base translation to shift the visual center down and slightly left */
+            transform: translate(-5%, 10%); 
         }
 
         .line-map {
+            /* Slower animation speed */
             animation: oscillateLine 10s ease-in-out infinite;
             transform-origin: center center;
         }
@@ -54,6 +57,7 @@
         }
 
         .color-map {
+            /* Slower animation speed */
             animation: oscillateColor 12s ease-in-out infinite;
             transform-origin: center center;
             opacity: 0.5;
@@ -65,25 +69,26 @@
 
         /* Oscillating animations - Center -> Separate -> Center */
         @keyframes oscillateLine {
-            /* Now, a scale of 1.8 on a 45% base image results in 81% of container size, which fits. */
+            /* 💡 UPDATED: Lowered max scale to prevent clipping while maintaining size */
             0%, 100% { 
-                transform: translateX(0) rotate(0deg) scale(1.8); 
+                transform: translateX(0) rotate(0deg) scale(1.4); 
             }
             50% { 
-                transform: translateX(-15%) rotate(-5deg) scale(1.8); 
+                transform: translateX(-15%) rotate(-5deg) scale(1.4); 
             }
         }
 
         @keyframes oscillateColor {
-            /* Now, a scale of 1.75 on a 45% base image results in 78.75% of container size, which fits. */
+            /* 💡 UPDATED: Lowered max scale to prevent clipping while maintaining size */
             0%, 100% { 
-                transform: translateX(0) rotate(0deg) scale(1.75); 
+                transform: translateX(0) rotate(0deg) scale(1.35); 
             }
             50% { 
-                transform: translateX(15%) rotate(5deg) scale(1.75); 
+                transform: translateX(15%) rotate(5deg) scale(1.35); 
             }
         }
 
+        /* No changes to the content overlay (it is already positioned correctly) */
         .content-overlay {
             position: absolute;
             top: 50%;
