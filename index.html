@@ -20,7 +20,7 @@
             margin: 0 auto;
             background: linear-gradient(135deg, rgba(15,93,244,1) 19%, rgba(33,200,117,1) 89%);
             position: relative;
-            overflow: hidden;
+            overflow: hidden; /* Keeps the map contained within the banner area */
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
@@ -35,15 +35,16 @@
             justify-content: center;
         }
 
+        /* 🥇 FINAL SIZE ADJUSTMENT */
         .map-layer img {
-            /* 1. 💡 INCREASED BASE SIZE: Larger base for maximum screen fill */
-            width: 85%; 
-            height: 85%;
+            /* Set base size larger than container to ensure massive scale */
+            width: 120%; 
+            height: 120%;
             object-fit: contain;
             opacity: 0.7;
             background: transparent;
-            /* 2. 💡 LOWERED SVG: Shifts the entire map down by 25% of the banner height */
-            transform: translate(-5%, 25%); 
+            /* Repositioning: Shift strongly down and left to center the map visually */
+            transform: translate(-15%, 35%); 
         }
 
         .line-map {
@@ -67,29 +68,30 @@
 
         /* Oscillating animations - Center -> Separate -> Center */
         @keyframes oscillateLine {
-            /* 3. 💡 ADJUSTED SCALE: Ensures the map is very large (85% * 1.15 approx 98% of container) */
+            /* INCREASED SCALE: 1.8 * 120% = 216% of banner base size for dramatic effect */
             0%, 100% { 
-                transform: translateX(0) rotate(0deg) scale(1.15); 
+                transform: translateX(0) rotate(0deg) scale(1.8); 
             }
             50% { 
-                transform: translateX(-15%) rotate(-5deg) scale(1.15); 
+                transform: translateX(-15%) rotate(-5deg) scale(1.8); 
             }
         }
 
         @keyframes oscillateColor {
-            /* 3. 💡 ADJUSTED SCALE: Ensures the map is very large (85% * 1.1 approx 93% of container) */
+            /* INCREASED SCALE: 1.7 * 120% = 204% of banner base size for dramatic effect */
             0%, 100% { 
-                transform: translateX(0) rotate(0deg) scale(1.1); 
+                transform: translateX(0) rotate(0deg) scale(1.7); 
             }
             50% { 
-                transform: translateX(15%) rotate(5deg) scale(1.1); 
+                transform: translateX(15%) rotate(5deg) scale(1.7); 
             }
         }
 
+        /* 🥇 FINAL TEXT PLACEMENT */
         .content-overlay {
             position: absolute;
-            /* 4. 💡 LOWERED TEXT: Moves the text down to 70% of the banner height */
-            top: 70%;
+            /* Moved text down to 75% to completely avoid map overlap */
+            top: 75%;
             left: 50px;
             transform: translateY(-50%);
             color: white;
@@ -127,7 +129,7 @@
             
             .content-overlay {
                 left: 30px;
-                top: 75%; /* Lower text even more on small screens */
+                top: 80%; /* Lower text even more on small screens */
             }
             
             .title {
